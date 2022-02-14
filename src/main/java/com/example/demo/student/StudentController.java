@@ -1,20 +1,19 @@
 package com.example.demo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/student")
+@RequestMapping(path = "api/v1/students")
 public class StudentController {
-    @Autowired
-    private final StudentService studentService;
 
+    private final StudentService studentService;
+    @Autowired
     public StudentController(StudentService studentService) {
-        this.studentService = new StudentService();
+        this.studentService = studentService;
     }
 
     @GetMapping
@@ -22,7 +21,24 @@ public class StudentController {
         return studentService.getStudents();
     }
 
+    @PostMapping(path ="/register")
+    public void registerNewStudent(@RequestBody Student student){
+        studentService.addNewStudent(student);
+    }
 
+    @DeleteMapping(path = "/delete/{studentId}")
+    public void deleteStudent(@PathVariable("studentId")Long studentId){
+    studentService.deleteStudent(studentId);
+    }
 
+    @PutMapping(path = "/update/{studentId}")
+    public void updateStudent(
+        @PathVariable("studentId") Long studentId,
+        @RequestParam(required = false) String name,
+        @RequestParam(required = false) String email
+    )
+    {
+        studentService.updateStudent(studentId,name,email);
+    }
 
 }
