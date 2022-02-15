@@ -6,15 +6,14 @@ Using these endpoints you can test the project that registers students you can r
 
 @GET request to get all students
 
-http://localhost:8081/api/v1/students
-
+https://heroku-moringa.herokuapp.com/api/v1/students
 
 
 #To register a student
 
 @POST request to register a student
 
-http://localhost:8081/api/v1/students/regiser
+https://heroku-moringa.herokuapp.com/api/v1/students/register
 {
        "name":"name",
        "email":"email@gmail.com",
@@ -24,20 +23,23 @@ http://localhost:8081/api/v1/students/regiser
 
 
 
-
-#To delete a student
-
-@DELETE request to register a student
-
-http://localhost:8081/api/v1/students/delete/{studentId}
-
-
-
-
-
-#To delete a student
+#To update a student
 
 @PUT request to udate students info
 
-http://localhost:8081/api/v1/students/update/{studentId}/name={name}&email="email"
+https://heroku-moringa.herokuapp.com/api/v1/students/update/{studentId}/name={name}&email="email"
+
+
+
+
+
+#To delete a student
+
+@DELETE request to delete a student
+
+https://heroku-moringa.herokuapp.com/api/v1/students/delete/{studentId}
+
+
+
+
 
